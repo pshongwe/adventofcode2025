@@ -5,7 +5,7 @@ import utils.InputReader
 
 fun main(args: Array<String>) {
     // Prep Data:
-    val lines = InputReader.readLinesForDay(1, "b", args)
+    val lines = InputReader.readLinesForDay(1, args)
     println("Read ${lines.size} lines")
 
     val rotations = lines.mapNotNull { line ->

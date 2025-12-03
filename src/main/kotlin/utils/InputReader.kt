@@ -11,13 +11,13 @@ object InputReader {
      * 2. Try to load resource `/inputs/day{day}{puzzle}.txt` from classpath resources.
      * 3. Fall back to stdin (interactive or piped).
      */
-    fun readLinesForDay(day: Int, puzzle: String, args: Array<String>): List<String> {
+    fun readLinesForDay(day: Int, args: Array<String>): List<String> {
         if (args.isNotEmpty()) {
             val p = Paths.get(args[0])
             return Files.readAllLines(p)
         }
 
-        val resourcePath = "/inputs/day$day$puzzle.txt"
+        val resourcePath = "/inputs/day$day.txt"
         val stream = InputReader::class.java.getResourceAsStream(resourcePath)
         if (stream != null) {
             return stream.bufferedReader().readLines()

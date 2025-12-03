@@ -15,7 +15,7 @@ fun isInvalidID(id: String): Boolean {
 
 fun main(args: Array<String>) {
     // Prep Data:
-    val lines = InputReader.readLinesForDay(2, "b", args)
+    val lines = InputReader.readLinesForDay(2, args)
     println("Read ${lines.size} lines")
 
     val ranges: List<Range> = lines.flatMap { line ->
