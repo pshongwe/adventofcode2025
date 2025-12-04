@@ -37,9 +37,7 @@ fun main(args: Array<String>) {
     println("Total rolls: $count")
 }
 
-fun Array<CharArray>.hasAtLeastNNeighborsOf(
-    r: Int, c: Int, target: Char, n: Int
-): Boolean {
+fun Array<CharArray>.hasAtLeastNNeighborsOf(r: Int, c: Int, target: Char, n: Int): Boolean {
     val directions8 = listOf(
         -1 to -1, -1 to 0, -1 to 1,
         0 to -1,          0 to 1,
@@ -66,4 +64,3 @@ fun Array<CharArray>.forEachCell(action: (r: Int, c: Int, value: Char) -> Unit) 
         }
     }
 }
-
