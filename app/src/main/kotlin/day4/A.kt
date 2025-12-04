@@ -43,8 +43,8 @@ fun Array<CharArray>.hasAtLeastNNeighborsOf(r: Int, c: Int, target: Char, n: Int
         0 to -1,          0 to 1,
         1 to -1,  1 to 0,  1 to 1
     )
-
     var count = 0
+
     for ((dr, dc) in directions8) {
         val nr = r + dr
         val nc = c + dc

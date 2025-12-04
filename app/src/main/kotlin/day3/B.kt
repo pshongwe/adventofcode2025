@@ -15,6 +15,7 @@ fun main(args: Array<String>) {
 
     for (line in lines) {
         val best = bestTwelveDigitNumber(line)
+
         count += best.toLong()
     }
     println("Total count = $count")

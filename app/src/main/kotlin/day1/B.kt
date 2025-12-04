@@ -29,16 +29,12 @@ fun main(args: Array<String>) {
         if (rotation.direction == 'R') {
             for (step in 1..rotation.distance) {
                 current = (current + 1) % 100
-                if (current == 0) {
-                    countZeros++
-                }
+                if (current == 0) countZeros++
             }
         } else if (rotation.direction == 'L') {
             for (step in 1..rotation.distance) {
                 current = (current - 1 + 100) % 100
-                if (current == 0) {
-                    countZeros++
-                }
+                if (current == 0) countZeros++
             }
         }
     }

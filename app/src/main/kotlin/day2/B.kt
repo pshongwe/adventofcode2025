@@ -2,17 +2,6 @@ package day2
 
 import utils.InputReader
 
-fun isInvalidID(id: String): Boolean {
-    for (patternLen in 1..id.length / 2) {
-        val pattern = id.substring(0, patternLen)
-        val repeated = pattern.repeat(id.length / patternLen)
-        if (id == repeated) {
-            return true
-        }
-    }
-    return false
-}
-
 fun main(args: Array<String>) {
     // Prep Data:
     val lines = InputReader.readLinesForDay(2, args)
@@ -40,11 +29,18 @@ fun main(args: Array<String>) {
 
     ranges.take(ranges.size).forEach { range ->
         for (step in range.start..range.end) {
-            if (isInvalidID(step.toString())) {
-                count += step
-            }
+            if (isInvalidID(step.toString())) count += step
         }
     }
     println("Total Invalid ID's: $count")
 }
 
+fun isInvalidID(id: String): Boolean {
+    for (patternLen in 1..id.length / 2) {
+        val pattern = id.take(patternLen)
+        val repeated = pattern.repeat(id.length / patternLen)
+
+        if (id == repeated) return true
+    }
+    return false
+}

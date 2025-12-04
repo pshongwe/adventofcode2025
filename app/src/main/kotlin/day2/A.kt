@@ -31,9 +31,7 @@ fun main(args: Array<String>) {
 
     ranges.take(ranges.size).forEach { range ->
         for (step in range.start..range.end) {
-            if (isInvalidId(step.toString())) {
-                count += step
-            }
+            if (isInvalidId(step.toString())) count += step
         }
     }
     println("Total Invalid ID's: $count")

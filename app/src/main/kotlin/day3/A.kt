@@ -26,14 +26,13 @@ fun bestTwoDigitNumber(line: String): Int {
 
     for (i in 0 until digits.size - 1) {
         val first = digits[i]
+
         for (j in i + 1 until digits.size) {
             val second = digits[j]
             val candidate = first * 10 + second
-            if (candidate > best) {
-                best = candidate
-            }
+
+            if (candidate > best) best = candidate
         }
     }
-
     return best
 }
