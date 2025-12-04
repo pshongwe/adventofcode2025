@@ -48,3 +48,9 @@ bin/
 /gradlew
 /gradlew.bat
 /src/Main.kt
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
