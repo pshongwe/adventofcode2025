@@ -1,6 +1,5 @@
 package day5
 
-import day2.Range
 import utils.InputReader
 import kotlin.collections.mapNotNull
 
