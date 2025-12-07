@@ -1,49 +1,56 @@
 package day7
 
 import utils.InputReader
+import java.math.BigInteger
 
 fun main(args: Array<String>) {
-    // Prep Data:
     val lines = InputReader.readLinesForDay(7, args)
+    if (lines.isEmpty()) {
+        println(0)
+        return
+    }
+
     val width = lines.first().length
     val grid = lines.map { line ->
+        require(line.length == width) { "All rows must share the same width" }
         line.toCharArray()
     }
 
     val start = findStart(grid) ?: error("No starting position 'S' found")
-    var activeColumns = mutableSetOf(start.second)
-    var splits = 0L
+    var active = mutableMapOf(start.second to BigInteger.ONE)
 
-    // Solve Problem:
     for (row in start.first + 1 until grid.size) {
-        if (activeColumns.isEmpty()) break
-        var rowBeams = activeColumns
+        if (active.isEmpty()) break
+        var current = active
         while (true) {
             var anySplit = false
-            val nextColumns = mutableSetOf<Int>()
-            for (col in rowBeams) {
+            val next = mutableMapOf<Int, BigInteger>()
+            for ((col, count) in current) {
                 if (col !in 0 until width) continue
                 when (grid[row][col]) {
                     '^' -> {
-                        splits++
                         anySplit = true
                         val left = col - 1
                         val right = col + 1
-                        if (left >= 0) nextColumns.add(left)
-                        if (right < width) nextColumns.add(right)
+                        if (left >= 0) next[left] = (next[left] ?: BigInteger.ZERO) + count
+                        if (right < width) next[right] = (next[right] ?: BigInteger.ZERO) + count
                     }
-                    else -> nextColumns.add(col)
+                    else -> {
+                        next[col] = (next[col] ?: BigInteger.ZERO) + count
+                    }
                 }
             }
             if (!anySplit) {
-                rowBeams = nextColumns
+                current = next
                 break
             }
-            rowBeams = nextColumns
+            current = next
         }
-        activeColumns = rowBeams
+        active = current
     }
-    println(splits)
+
+    val totalTimelines = active.values.fold(BigInteger.ZERO, BigInteger::add)
+    println(totalTimelines)
 }
 
 private fun findStart(grid: List<CharArray>): Pair<Int, Int>? {
