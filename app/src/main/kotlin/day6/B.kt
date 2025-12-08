@@ -3,6 +3,7 @@ package day6
 import utils.InputReader
 
 fun main(args: Array<String>) {
+    // Prep Data:
     val rawLines = InputReader.readLinesForDay(6, args)
 
     val paddedLines = padLines(rawLines)
@@ -11,6 +12,7 @@ fun main(args: Array<String>) {
 
     val problems = splitIntoProblems(digitRows, operatorRow)
 
+    // Solve Problem
     val columnResults = problems.asReversed().map { problem ->
         val values = problem.columns.asReversed().map { column ->
             val cleaned = column.filterNot { it.isWhitespace() }
